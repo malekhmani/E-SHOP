@@ -57,16 +57,18 @@ require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');
             <h3 class="text-secondary m-3 text-center">
                 Qté :
             </h3>
-            <form method="get" action="http://localhost:82/tppr/views/checkout.php">
+            <form method="get" action="index.php">
                 <div class="form-group">
                     <input type="number" name="product_qte" id="product_qte" class="form-control" value="1">
                     <input type="hidden" name="product_title" value="<?php echo $products->designation;?>">
                     <input type="hidden" name="ref_p" value="<?php echo $products->ref_p;?>">
-                    <input type="number" name="qte_stock" value="<?php echo $products->qte_stock;?>">
-                    <input type="number" name="prix" value="<?php echo $products->prix;?>">
+                    <input type="hidden" name="qte_stock" value="<?php echo $products->qte_stock;?>">
+                    <input type="hidden" name="prix" value="<?php echo $products->prix;?>">
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Ajouter au panier">
+                    <input type='hidden' name='action' value='checkout' >
+                    <input type='hidden' name='controller' value='ProductController' >
+                    <input type="submit" class="btn btn-primary" name ="panier" value="Ajouter au panier">
                 </div>
             </form>
         </div>

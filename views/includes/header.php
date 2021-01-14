@@ -10,8 +10,7 @@
 	<body>
     <?php include("navbar.php"); ?>
    <div class="row">
-   <div class="col-md-10 mx-auto m-3">
-   <?php include('alerts.php');?>
+   
     </div>
     </div>
     </body>

@@ -30,10 +30,51 @@ class ProductController{
            require ('C:\xampp\htdocs\tppr\views\home.php');
         
     }
+    public function checkout(){
+        if(isset($_GET["ref_p"]) AND isset($_GET["product_title"]) AND isset($_GET["product_qte"]) ){
+            $id = $_GET["ref_p"];
+            $id1 = $_GET["product_title"];
+            $id2 = $_GET["product_qte"];
+            $id3 = $_GET["qte_stock"];
+            $id4 = $_GET["prix"];
+            if($_SESSION["products_".$id]["title"] == $id1){
+                $R="Vous avez déja ajouté ce produit au panier";
+                Session::set("success",$R);
+                header('location: ./cart.php');}
+            else{
+                if($id3< $_GET["product_qte"]){
+                   $R="La quantité disponible est : $id3";
+                   Session::set("success",$R);
+                   header('location: ./index.php');}
+                    
+                    else{
+                        $_SESSION["products_".$id] = array(
+                            "id" => $id,
+                            "title" => $id1,
+                            "price" => $id4,
+                            "qte" => $id2,
+                            "total" => $id4 * $id2,
+            
+                            
+                        );
+                        $_SESSION["totaux"] += $_SESSION["products_".$id]["total"];
+                        $_SESSION["count"] += 1;
+                       // Redirect::to("cart");
+                       //print_r($_SESSION);
+                       header('location: ./cart.php');   
+                    }
+                }
+            }else{
+                header('location: ./cart.php');   
+                //Redirect::to("cart");
+            }
+     
+    }
     public function getProduct(){
         /*if(isset($_POST["ref_p"])){
             $data = array(
                 'id' => $_POST["ref_p"]
+                
             );*/
             $product = Product::getProductById($_GET['ref_p']);
             $products= $product[0];
@@ -42,29 +83,17 @@ class ProductController{
          require ('C:\xampp\htdocs\tppr\views\show.php');
        // }
     }
-     public function getProductt(){
-        /*if(isset($_POST["ref_p"])){
-            $data = array(
-                'id' => $_POST["ref_p"]
-            );*/
-            $product = Product::getProductById($_GET['ref_p']);
-            $productToUpdate= $product[0];
-           return $productToUpdate;
-           //var_dump($products);
-         require ('C:\xampp\htdocs\tppr\views\admin\updatProduct.php');
-       // }
-    }/*
-     public function getProduct(){
-       /* if(isset($_POST["product_id"])){
-            $data = array(
-                'id' => $_POST["product_id"]
-            );*/
-           // if(isset($_GET["ref"])){
-           // $product = Product::getProductById($_GET['ref']);
-         //return $product;
-         //include_once ('C:\xampp\htdocs\tppr\views\show.php');
-        
-    //}}
+     
+    public function cancelcart(){
+    foreach($_SESSION as $name => $product){
+    if(substr($name,0,9) == "products_"){
+        unset($_SESSION[$name]);
+        unset($_SESSION["count"]);
+        unset($_SESSION["totaux"]);
+        header('location: ./cart.php'); 
+    }}}
+  
+           
     public function emptyCart($id,$price){
         unset($_SESSION["products_".$id]);
         $_SESSION["count"] -= 1;
@@ -79,22 +108,24 @@ class ProductController{
                 "designation" => $_POST["Designation"],
                 "qte_stock" => $_POST["Quantité"],
                 "prix" => $_POST["Prix"],
-                //"photo" => $_POST["photo"],
                 "photo"=>$this->uploadPhoto(),
                 "tva" => $_POST["Tva"],
                 "remise" => $_POST["Remise"],
                 "categorie" => $_POST["categorie"],
                 "description" => $_POST["Description"],
             );
+            
             $result = Product::addProduct($data);
             if($result === "ok"){
                 Session::set("success","Produit ajouté");
                 header('location: ./products.php');}
             else{
-                echo $result;
+                
+                Session::set("success",$result);
+                header('location: ./addProduct.php');
             }
         }
-    }//$this->uploadPhoto(),
+    }
     public function updateProduct(){
         if(isset($_POST["submit"])){
             $oldImage = $_POST["product_current_image"];

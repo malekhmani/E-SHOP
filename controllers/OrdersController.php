@@ -9,8 +9,18 @@ class OrdersController{
         $orders = Order::getAll();
         return $orders;
     }
-    public function addOrder($data){
-        $result = Order::createOrder($data);
+    public function addOrder(){
+        if(isset($_SESSION["logged"])){
+            foreach($_SESSION as $name => $product){
+                if(substr($name,0,9) == "products_"){
+                   $data = array(
+                   "fullname" => $_SESSION["nom"],
+                    "product" => $product["title"],
+                    "qte" => $product["qte"],
+                    "price" => $product["price"],
+                    "total" => $product["total"]
+                   );
+                   $result = Order::createOrder($data);
         if($result === "ok"){
             foreach($_SESSION as $name => $product){
                 if(substr($name,0,9) == "products_"){
@@ -22,5 +32,13 @@ class OrdersController{
             Session::set("success","Commande effectuée");
             header('location: ./index.php'); 
         }
+                }}}else{
+                    Session::set("success","Vous devez connectez pour terminer vos achat");
+                    header('location: ./login.php');
+                
+            
+            }
+        
+        
     }
 }

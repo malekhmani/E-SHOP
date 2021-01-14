@@ -3,6 +3,8 @@
 define('BASE_URL','http://localhost:82/tppr/views/');
 require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
 require_once('C:\xampp\htdocs\tppr\controllers\CategoriesController.php');
+require_once('C:\xampp\htdocs\tppr\controllers\routeur.php');
+
 require_once('C:\xampp\htdocs\tppr\models\product.php');
 
 //echo "hoommme";
@@ -45,7 +47,7 @@ require_once('C:\xampp\htdocs\tppr\models\product.php');
                             </form>
                             <h3 onclick="submitForm(<?php// echo $product['ref_p'];?>)" class="card-title">-->
                            
-                             <a href="index.php?action=getProduct?&&ref_p=<?php echo $product->ref_p;?>" class="card-title">
+                             <a href="index.php?action=getProduct&&controller=ProductController&&ref_p=<?php echo $product->ref_p;?>" class="card-title">
                                 <?php
                                     echo $product->designation;
                                 ?>
@@ -109,7 +111,7 @@ require_once('C:\xampp\htdocs\tppr\models\product.php');
                         <!--<form id="catPro" method="post" action="">
                             <input type="hidden" name="code_cat" id="code_cat">
                         </form>-->
-                        <a href="index.php?action=getProductsByCategory&&id=<?php echo $category->code_cat;?>" class="btn btn-link text-secondary" style="text-decoration:none;font-size:24px;cursor:pointer">
+                        <a href="index.php?action=getProductsByCategory&&controller=ProductController&&id=<?php echo $category->code_cat;?>" class="btn btn-link text-secondary" style="text-decoration:none;font-size:24px;cursor:pointer">
                             <?php
                                 echo $category->nom;
                                 echo $category->code_cat;

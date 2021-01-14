@@ -18,7 +18,7 @@ require_once('C:\xampp\htdocs\tppr\controllers\UsersController.php');
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form method="post" class="mr-1">
+                    <form method="post" action="index.php?action=register&&controller=UsersController"class="mr-1">
                     
                         <div class="form-group">
                             <input type="text"

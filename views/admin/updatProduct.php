@@ -1,22 +1,5 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
-//require_once('C:\xampp\htdocs\tppr\controllers\OrdersController.php');
-require_once('C:\xampp\htdocs\tppr\models\product.php');
-require_once('C:\xampp\htdocs\tppr\controllers\CategoriesController.php');
-
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-    if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true){
-        $categories = new CategoriesController();
-        $categories = $categories->getAllCategorie();
-       $productToUpdate = new ProductController();
-       $productToUpdate = $productToUpdate->getProductt();
-        if(isset($_POST["submit"])){
-            $product = new ProductController();
-            $product= $product->updateProduct();
-        }
-    }else{
-       // Redirect::to("home");
-    }
 ?>
 <div class="container">
     <div class="row my-4">
@@ -28,12 +11,12 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form method="post" class="mr-1" enctype="multipart/form-data">
+                    <form method="post"  action="index.php?action=updateProduct&&controller=AdminController" class="mr-1" enctype="multipart/form-data">
                     
                         <div class="form-group">
-                            <input type="text"
+                            <input readonly type="text"
                             class="form-control"
-                            name="reference" required autocomplete="off" placeholder="reference" id="" 
+                            name="reference" required autocomplete="off" placeholder="Réference" id="" 
                             value="<?php echo $productToUpdate->ref_p;?>">
                         </div>
                         <div class="form-group">
@@ -54,7 +37,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                         </div>
                         <div class="form-group">
                             <input type="number" autocomplete="off" class="form-control" name="Remise"
-                            placeholder="Remise" id=""value="<?php echo $productToUpdate->remise;?>">
+                            placeholder="Ancien Prix" id=""value="<?php echo $productToUpdate->remise;?>">
                         </div>
                         <div class="form-group">
                            <select class="form-control" name="categorie" id="">
@@ -78,7 +61,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                             value="<?php echo $productToUpdate->photo;?>">
                         
                         <div class="form-group">
-                            <img src="images/<?php echo $productToUpdate->photo;?>" width="200" height="200" alt="" class="img-fluid rounded">
+                            <img src="admin/images/<?php echo $productToUpdate->photo;?>" width="200" height="200" alt="" class="img-fluid rounded">
                         </div>
                          <div class="form-group">
                             <input type="file"

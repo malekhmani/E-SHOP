@@ -7,7 +7,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
             <div class="card p-3 bg-danger">
                 <div class="card-body">
                     <h3 class="card-text text-center">
-                        <a href=http://localhost:82/tppr/views/admin/products.php
+                        <a href="../index.php?action=getAllProduct&&controller=AdminController"
                         style="text-decoration:none;color:white;font-weight:bold">Produits</a>
                     </h3>
                 </div>
@@ -17,7 +17,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
             <div class="card p-3 bg-primary">
                 <div class="card-body">
                     <h3 class="card-text text-center">
-                        <a href=http://localhost:82/tppr/views/admin/orders.php
+                        <a href="../index.php?action=getAllOrders&&controller=AdminController"
                         style="text-decoration:none;color:white;font-weight:bold">Commandes</a>
                     </h3>
                 </div>

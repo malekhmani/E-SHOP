@@ -9,6 +9,7 @@ class Order{
         $stmt =null;
     }
     static public function createOrder($data){
+        
         $stmt = DB::connect()->prepare('INSERT INTO les_commandes (nom,prix,qte,total,produit)
             VALUES (:nom,:prix,:qte,:total,:produit)');
             $stmt->bindParam(':nom',$data['fullname']);

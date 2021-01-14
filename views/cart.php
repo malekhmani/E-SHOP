@@ -22,10 +22,12 @@
                         <td><?php echo $product["qte"];?></td>
                         <td><?php echo $product["total"];?> DT</td>
                         <td>
-                            <form method="get" action="http://localhost:82/tppr/views/cancelcart.php">
+                            <form method="get" action="index.php">
                                 <input type="hidden" name="product_id" value="<?php echo $product["id"];?>">
                                 <input type="hidden" name="product_price" value="<?php echo $product["total"];?>">
-                                <button type="submit" class="btn btn-sm btn-danger text-white font-weight-bold p-1">
+                                <input type='hidden' name='action' value='emptyCart'>
+                                <input type='hidden' name='controller' value='ProductController'>
+                                <button type="submit" name="cancel" class="btn btn-sm btn-danger text-white font-weight-bold p-1">
                                     &times;
                                 </button>
                             </form>
@@ -35,9 +37,9 @@
                     <?php endforeach;?>
                 </tbody>
             </table>
-                <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0 && isset($_SESSION["logged"])):?>
-                    <div id="paypal-button-container"></div>
-                <?php elseif(isset($_SESSION["count"]) && $_SESSION["count"] > 0):?>
+               <!-- <?php// if(isset($_SESSION["count"]) && $_SESSION["count"] > 0 && isset($_SESSION["logged"])):?>
+                    <div id="paypal-button-container"></div>-->
+                <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0 && (!isset($_SESSION["logged"]))):?>
                     <a href="http://localhost:82/tppr/views/login.php" class="btn btn-link">Connectez vous pour terminer vos achats</a>
                 <?php endif;?>
         </div>
@@ -61,12 +63,12 @@
                </tbody>
            </table>
             <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0):?>
-                <form method="post" action="http://localhost:82/tppr/views/emptycart.php">
+                <form method="post" action="index.php?action=cancelcart&&controller=ProductController">
                     <button type="submit" class="btn btn-primary">
                         Vider le panier
                     </button>
                 </form>
-                <form method="post" id="addOrder" action="http://localhost:82/tppr/views/addOrder.php">
+                <form method="post" id="addOrder" action="index.php?action=addOrder&&controller=OrdersController">
                     <button type="submit" class="btn btn-primary">
                     payer ici
                     </button>
@@ -75,28 +77,3 @@
         </div>
     </div>
 </div>
-<script>
-  let amount = document.querySelector('#amount').dataset.amount;
-  let finalAmount = Math.floor(amount / 9.86);
-  paypal.Buttons({
-    createOrder: function(data, actions) {
-      // This function sets up the details of the transaction, including the amount and line item details.
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: finalAmount.toString()
-          }
-        }]
-      });
-    },
-    onApprove: function(data, actions) {
-      // This function captures the funds from the transaction.
-      return actions.order.capture().then(function(details) {
-        // This function shows a transaction success message to your buyer.
-        alert('Commande effectuée par ' + details.payer.name.given_name);
-        document.querySelector('#addOrder').submit();
-      });
-    }
-  }).render('#paypal-button-container');
-  //This function displays Smart Payment Buttons on your web page.
-</script>

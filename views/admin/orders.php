@@ -3,13 +3,13 @@ require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
 require_once('C:\xampp\htdocs\tppr\controllers\OrdersController.php');
 require_once('C:\xampp\htdocs\tppr\models\product.php');
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-  if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+ /* if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
     $data = new OrdersController();
     $orders = $data->getAllOrders();
   }else{
     header('location: ./home.php');
      // Redirect::to("home");
-  }
+  }*/
 ?>
 <div class="container">
   <div class="row my-5">
@@ -35,7 +35,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                         <td><?php echo $order["qte"];?></td>
                         <td><?php echo $order["prix"];?></td>
                         <td><?php echo $order["total"];?></td>
-                        <td><?php// echo $order["done_at"];?></td>
+                        <td><?php echo $order["Date"];?></td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>

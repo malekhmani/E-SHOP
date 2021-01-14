@@ -1,6 +1,5 @@
 <?php
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-require_once('C:\xampp\htdocs\tppr\app\classes\Redirect.php');
 require_once('C:\xampp\htdocs\tppr\app\classes\Session.php');
 require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
 if(isset($_GET["ref_p"]) AND isset($_GET["product_title"]) AND isset($_GET["product_qte"]) ){
@@ -12,16 +11,17 @@ if(isset($_GET["ref_p"]) AND isset($_GET["product_title"]) AND isset($_GET["prod
    
 
     /* echo $id;echo $id1;echo $id2;echo $id3;*/
-    $data = new ProductController();
-    $product = $data->getProduct();
+    /*$data = new ProductController();
+    $product = $data->getProduct();*/
 
     if($_SESSION["products_".$id]["title"] == $id1){
        
-       Session::set("info","Vous avez déja ajouté ce produit au panier");
-       //echo"Vous avez déja ajouté ce produit au panier";
-       exit(header('location: ./cart.php'));
-       ?>
+       //Session::set("info","Vous avez déja ajouté ce produit au panier");
+       //echo"Vous avez déja ajouté ce produit au panier";?>
        <script> location.replace("cart.php"); </script>
+       
+       
+       
        
        <?php
     }else{

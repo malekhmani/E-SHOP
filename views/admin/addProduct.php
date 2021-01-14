@@ -3,17 +3,17 @@ require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
 require_once('C:\xampp\htdocs\tppr\controllers\CategoriesController.php');
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
 
-if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+/*if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
     $categories = new CategoriesController();
         $categories = $categories->getAllCategorie();
-        if(isset($_POST["submit"])){
+        /*if(isset($_POST["submit"])){
             $product = new ProductController();
             $product =$product->newProduct();
             
         }
     }else{
        // header('location: ./home.php');
-    }
+    }*/
  
 ?>
 <div class="container">
@@ -26,12 +26,12 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form method="post" class="mr-1" enctype="multipart/form-data">
+                    <form method="post" action="index.php?action=newProduct&&controller=AdminController"class="mr-1" enctype="multipart/form-data">
                     
                         <div class="form-group">
                             <input type="text"
                             class="form-control"
-                            name="reference" required autocomplete="off" placeholder="reference" id="">
+                            name="reference" required autocomplete="off" placeholder="Réference" id="">
                         </div>
                         <div class="form-group">
                             <input type="text" autocomplete="off" class="form-control" name="Designation"
@@ -51,7 +51,7 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
                         </div>
                         <div class="form-group">
                             <input type="number" autocomplete="off" class="form-control" name="Remise"
-                            placeholder="Remise" id="">
+                            placeholder="Ancien Prix" id="">
                         </div>
                         <div class="form-group">
                            <select class="form-control" name="categorie" id="">

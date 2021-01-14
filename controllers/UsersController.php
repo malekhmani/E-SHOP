@@ -15,7 +15,7 @@ class UsersController{
                 $_SESSION["prenom"] = $result->prenom;
                 $_SESSION["nom"] = $result->nom;
                $_SESSION["admin"] = $result->admin;
-                echo"bravooo";
+                //echo"bravooo";
               //Redirect::to("home.php");
               header('location: ./index.php');
             }else{
@@ -48,10 +48,14 @@ class UsersController{
            header('location: ./login.php');
            //require('C:\xampp\htdocs\tppr\views\login.php');
         }else{
-            echo $result;
+            //echo $result;
+            Session::set("success",$result);
+            header('location: ./register.php');
+
         }
     }
     public function logout(){
         session_destroy();
+        header('location: ./index.php');
     }
 }

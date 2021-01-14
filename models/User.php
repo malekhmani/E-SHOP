@@ -21,6 +21,7 @@ class User{
     }
 
     static public function createUser($data){
+        if($data['nom']&&$data['prenom']&&$data['email']&&$data['password']){
         $stmt = DB::connect()->prepare('INSERT INTO client (nom
         ,prenom,email,mp)
         VALUES (:nom,:prenom,:email,:mp)');
@@ -31,8 +32,8 @@ class User{
         $stmt->bindParam(':mp',$data['password']);
         if($stmt->execute()){
             return 'ok';
-        }else{
-            return 'error';
+        }}else{
+            return 'veuillez remplir tous les champs';
         }
         $stmt->close();
         $stmt = null;

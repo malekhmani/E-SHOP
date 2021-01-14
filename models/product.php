@@ -46,6 +46,7 @@ class Product{
         }
     }
     static public function addProduct($data){
+        if($data['ref_p']&&$data['designation']&&$data['prix']&&$data['qte_stock']&&$data['photo']&&$data['categorie']&&$data['tva']&&$data['remise']&&$data['description']){
         $stmt = DB::connect()->prepare('INSERT INTO produit (ref_p,designation,qte_stock
         ,prix,photo,tva,remise,categorie,description) VALUES (:ref_p,:designation,:qte_stock,:prix,
         :photo,:tva,:remise,:categorie,:description)');
@@ -60,8 +61,8 @@ class Product{
         $stmt->bindParam(':description',$data['description']);
         if($stmt->execute()){
             return 'ok';
-        }else{
-            return 'error';
+        }}else{
+            return 'veuillez remplir tous les champs';
         }
         $stmt->close();
         $stmt = null;

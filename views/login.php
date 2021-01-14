@@ -8,8 +8,8 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
        
       // header('location: ./home.php');
     }
-    $loginUser = new UsersController();
-    $loginUser->auth();
+    //$loginUser = new UsersController();
+    //$loginUser->auth();
 ?>
 <div class="container">
     <div class="row my-4">
@@ -21,7 +21,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form method="post" class="mr-1">
+                    <form method="post" action="index.php?action=auth&&controller=UsersController" class="mr-1">
                         <div class="form-group">
                             <input autocomplete="off" type="text" class="form-control" name="nom"
                             placeholder="Pseudo" id="">
