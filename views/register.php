@@ -1,12 +1,11 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\controllers\UsersController.php');
-    if(isset($_SESSION["logged"]) && $_SESSION["logged"] === true){
-        //Redirect::to("home");
-    }
-    if(isset($_POST["submit"])){
-        $createUser = new UsersController();
-        $createUser->register();
-    }
+    require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
+  
+    if(isset($_GET['result'])){
+        $result=$_GET['result'];
+        if($result=="comptefailed"){
+            include_once('includes/alerts/comptefailed.php');
+        }}
 ?>
 <div class="container">
     <div class="row my-4">

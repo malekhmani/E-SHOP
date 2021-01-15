@@ -1,15 +1,20 @@
 <?php
-//require_once('C:\xampp\htdocs\tppr\controllers\HomeController.php');
-require_once('C:\xampp\htdocs\tppr\controllers\UsersController.php');
-//require_once('C:\xampp\htdocs\tppr\models\product.php');
+
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-    if(isset($_SESSION["logged"]) && $_SESSION["logged"] === true){
-       // Redirect::to("home");
-       
-      // header('location: ./home.php');
+  
+    if(isset($_GET['result'])){
+        $result=$_GET['result'];
+        if($result=="cmdfailed"){
+            include_once('includes/alerts/commandefailed.php');
+
+        }elseif($result=="conf"){
+            include_once('includes/alerts/signupfailed.php');
+
+        }elseif($result=="comptecree"){
+            include_once('includes/alerts/signupfailed.php');
+
+        }
     }
-    //$loginUser = new UsersController();
-    //$loginUser->auth();
 ?>
 <div class="container">
     <div class="row my-4">
@@ -20,6 +25,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                         Connexion
                     </h3>
                 </div>
+                
                 <div class="card-body">
                     <form method="post" action="index.php?action=auth&&controller=UsersController" class="mr-1">
                         <div class="form-group">

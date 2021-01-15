@@ -41,7 +41,7 @@ static public function addProduct($data){
         if($stmt->execute()){
             return 'ok';
         }}else{
-            return 'veuillez remplir tous les champs';
+            return 'erreur';
         }
         $stmt->close();
         $stmt = null;

@@ -38,10 +38,11 @@ class AdminController{
             );
             $result = Admin::editProduct($data);
             if($result === "ok"){
-                Session::set("success","Produit modifié");
-                header('location: ./index.php?action=getAllProduct&&controller=AdminController');
+               
+                header('location: ./index.php?action=getAllProduct&&controller=AdminController&&reult=ups');
             }else{
                 echo $result;
+                //header('location: ./index.php?action=getAllProduct&&controller=AdminController&&reult=upf');
             }
         }
     }
@@ -62,8 +63,8 @@ class AdminController{
     public function removeProduct(){
             $result = Admin::deleteProduct($_GET['id']);
             if($result === "ok"){
-                Session::set("success","Produit supprimé");
-                header('location: ./index.php?action=getAllProduct&&controller=AdminController');
+               
+                header('location: ./index.php?action=getAllProduct&&controller=AdminController&&reuslt=pd');
             }else{
                 echo $result;
             }
@@ -85,12 +86,11 @@ class AdminController{
                 
                 $result = Admin::addProduct($data);
                 if($result === "ok"){
-                    Session::set("success","Produit ajouté");
-                    header('location: ./index.php?action=getAllProduct&&controller=AdminController');}
+                    header('location: ./index.php?action=getAllProduct&&controller=AdminController&&result=pa');}
                 else{
                     
-                    Session::set("success",$result);
-                    header('location: ./index.php?action=getAllCategories&&controller=AdminController');
+                  
+                    header('location: ./index.php?action=getAllCategories&&controller=AdminController&&result=comptefailed');
                 }
             }
         }

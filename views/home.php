@@ -1,32 +1,23 @@
 <?php
 
-define('BASE_URL','http://localhost:82/tppr/views/');
-require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
-require_once('C:\xampp\htdocs\tppr\controllers\CategoriesController.php');
 require_once('C:\xampp\htdocs\tppr\controllers\routeur.php');
 
-require_once('C:\xampp\htdocs\tppr\models\product.php');
+    if(isset($_GET['result'])){
+        $result=$_GET['result'];
+        if($result=="cmdsucces"){
+            include_once('includes/alerts/commandesucces.php');
+        }    
+        elseif($result=="con"){
+            include_once('includes/alerts/signupsucces.php');
 
-//echo "hoommme";
-//$data= new ProductController();
-//$products=$data->getALLProducts();
+        }elseif($result=="deconnexion"){
+            include_once('includes/alerts/deconnexion.php');
+ 
+        }
+        elseif($result=="qte"){
+            include_once('includes/alerts/qtedispo.php');}
 
-//print_r($products);
-
-    //$categories = new CategoriesController();
-    /*$categories = $categories->getAllCategories();
-    /*if(isset($_POST["code_cat"])){
-        $products = new ProductController();
-        $products = $products->getProductsByCategory($_POST['code_cat']);
-
-        
-    }/*else{
-        $data = new ProductController();
-        $products = $data->getAllProducts();
-    }*/
-   // $products = new ProductController();
-    //$products = $data->getAllProducts();
-    
+}  
 ?>
 <div class="container">
     <div class="row my-5">

@@ -1,7 +1,19 @@
 <?php
 
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-
+if(isset($_GET['result'])){
+    $result=$_GET['result'];
+    if($result=="ups"){
+        include_once('./includes/alerts/updatsuccess.php');
+    }    
+    elseif($result=="pd"){
+        include_once('./includes/alerts/productdeleted.php');
+    }
+    elseif($result=="pa"){
+        include_once('./includes/alerts/productadded.php');
+    }
+    
+}
 ?>
 <div class="container">
   <div class="row my-5">

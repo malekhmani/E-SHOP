@@ -1,9 +1,6 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\models\product.php');
-require_once('C:\xampp\htdocs\tppr\models\category.php');
 require_once('C:\xampp\htdocs\tppr\models\Order.php');
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-require_once('C:\xampp\htdocs\tppr\app\classes\Session.php');
 class OrdersController{
     public function getAllOrders(){
         $orders = Order::getAll();
@@ -29,12 +26,14 @@ class OrdersController{
                     unset($_SESSION["totaux"]);
                 }
             }
-            Session::set("success","Commande effectuée");
-            header('location: ./index.php'); 
+           
+            
+            header('location: ./index.php?result=cmdsucces'); 
         }
                 }}}else{
-                    Session::set("success","Vous devez connectez pour terminer vos achat");
-                    header('location: ./login.php');
+                   
+                    header('location: ./login.php?result=cmdfailed');
+                    
                 
             
             }

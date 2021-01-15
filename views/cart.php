@@ -1,5 +1,13 @@
 
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\header.php'); ?>
+<?php require_once('C:\xampp\htdocs\tppr\views\includes\header.php'); 
+if(isset($_GET['result'])){
+    $result=$_GET['result'];
+    if($result=="produitexiste"){
+        include_once('includes/alerts/produitexiste.php');
+}}    
+
+
+?>
 <div class="container">
     <div class="row">
         <div class="col-md-8 bg-white">

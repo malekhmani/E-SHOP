@@ -1,32 +1,25 @@
 <?php
 require_once('C:\xampp\htdocs\tppr\models\product.php');
 require_once('C:\xampp\htdocs\tppr\models\category.php');
-//require_once('C:\xampp\htdocs\tppr\images');
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-require_once('C:\xampp\htdocs\tppr\app\classes\Session.php');
-require_once('C:\xampp\htdocs\tppr\app\classes\Redirect.php');
+
 class ProductController{
     public function getAllProducts(){
         $products = Product::getAll();
         $categories = category::getAll();
-        //return $products;
         
         require ('C:\xampp\htdocs\tppr\views\home.php');
     }
     public function getAllProduct(){
         $products = Product::getAll();
-        //require ('C:\xampp\htdocs\tppr\views\admin\products.php');
         return $products;
         
     }
     public function getProductsByCategory(){
-        /*if(isset($id)){
-            $data = array(
-                'id' => $id
-            );*/
+       
             $products = Product::getProductByCat($_GET['id']);
             $categories = category::getAll();
-           // return $products;
+       
            require ('C:\xampp\htdocs\tppr\views\home.php');
         
     }
@@ -38,14 +31,14 @@ class ProductController{
             $id3 = $_GET["qte_stock"];
             $id4 = $_GET["prix"];
             if($_SESSION["products_".$id]["title"] == $id1){
-                $R="Vous avez déja ajouté ce produit au panier";
-                Session::set("success",$R);
-                header('location: ./cart.php');}
+                //$R="Vous avez déja ajouté ce produit au panier";
+                //Session::set("success",$R);
+                header('location: ./cart.php?result=produitexiste');}
             else{
                 if($id3< $_GET["product_qte"]){
-                   $R="La quantité disponible est : $id3";
-                   Session::set("success",$R);
-                   header('location: ./index.php');}
+                  // $R="La quantité disponible est : $id3";
+                  // Session::set("success",$R);
+                   header('location: ./index.php?result=qte');}
                     
                     else{
                         $_SESSION["products_".$id] = array(
@@ -59,29 +52,22 @@ class ProductController{
                         );
                         $_SESSION["totaux"] += $_SESSION["products_".$id]["total"];
                         $_SESSION["count"] += 1;
-                       // Redirect::to("cart");
-                       //print_r($_SESSION);
+                       
                        header('location: ./cart.php');   
                     }
                 }
             }else{
                 header('location: ./cart.php');   
-                //Redirect::to("cart");
+               
             }
      
     }
     public function getProduct(){
-        /*if(isset($_POST["ref_p"])){
-            $data = array(
-                'id' => $_POST["ref_p"]
-                
-            );*/
             $product = Product::getProductById($_GET['ref_p']);
             $products= $product[0];
-           //return $products;
-           //var_dump($products);
+           
          require ('C:\xampp\htdocs\tppr\views\show.php');
-       // }
+    
     }
      
     public function cancelcart(){
@@ -99,9 +85,8 @@ class ProductController{
         $_SESSION["count"] -= 1;
         $_SESSION["totaux"] -= $price;
         header('location: ./cart.php');   
-        //Redirect::to("cart");
     }
-    public function newProduct(){
+    /*public function newProduct(){
         if(isset($_POST["submit"])){
             $data = array(
                 "ref_p" => $_POST["reference"],
@@ -166,28 +151,9 @@ class ProductController{
            return $imageName;
         }
         return $oldImage;}
-   /*if(move_uploaded_file($_FILES["Photo"]["tmp_name"],$target)){
-       $msj="suuucc";
-   }
-        else{
-            $msj="noooo";
-        }
-   // }*/
-  /* $uploads_dir = 'images';
-$name = $_FILES['photo']['name'];
-if (is_uploaded_file($_FILES['photo']['tmp_name']))
-{       
-    //in case you want to move  the file in uploads directory
-     move_uploaded_file($_FILES['photo']['tmp_name'], $uploads_dir.$name);
-     echo 'moved file to destination directory';
-     
-}
-    }*/
+
     public function removeProduct(){
-        /*if(isset($_POST["delete_product_id"])){
-            $data = array(
-                "id" => $_POST["delete_product_id"]
-            );*/
+       
             $result = Product::deleteProduct($_GET['id']);
             if($result === "ok"){
                 Session::set("success","Produit supprimé");
@@ -196,5 +162,5 @@ if (is_uploaded_file($_FILES['photo']['tmp_name']))
                 echo $result;
             }
         }
-    //}
+    //}*/
 }
