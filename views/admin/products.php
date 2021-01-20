@@ -1,6 +1,6 @@
 <?php
 
-require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
+require_once('includes\header.php');
 if(isset($_GET['result'])){
     $result=$_GET['result'];
     if($result=="ups"){
@@ -76,4 +76,4 @@ Product deleted successfully!</strong>
     </div>
   </div>
 </div>
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>
+<?php require_once('includes\footer.php');?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
+require_once('includes\header.php');
   
     if(isset($_GET['result'])){
         $result=$_GET['result'];
@@ -11,7 +11,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
             include_once('includes/alerts/signupfailed.php');
 
         }elseif($result=="comptecree"){
-            include_once('includes/alerts/signupsucces.php');
+            include_once('includes/alerts/comptecree.php');
 
         }
     }
@@ -44,7 +44,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                     </form>
                 </div>
                 <div class="card-footer">
-                    <a href="http://localhost:82/tppr/views/register" class="btn btn-link">
+                    <a href="register.php" class="btn btn-link">
                         Inscription
                     </a>
                 </div>
@@ -52,4 +52,4 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
         </div>
     </div>
 </div>
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>
+<?php require_once('includes\footer.php');?>

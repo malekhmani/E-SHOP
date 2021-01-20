@@ -1,9 +1,9 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
-require_once('C:\xampp\htdocs\tppr\controllers\CategoriesController.php');
-require_once('C:\xampp\htdocs\tppr\controllers\OrdersController.php');
-require_once('C:\xampp\htdocs\tppr\controllers\UsersController.php');
-require_once('C:\xampp\htdocs\tppr\controllers\AdminController.php');
+require_once('ProductController.php');
+require_once('CategoriesController.php');
+require_once('OrdersController.php');
+require_once('UsersController.php');
+require_once('AdminController.php');
 
 
 /*

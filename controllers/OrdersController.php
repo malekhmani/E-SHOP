@@ -1,11 +1,9 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\models\Order.php');
-require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
+require_once('..\models\Order.php');
+require_once('..\views\includes\header.php');
 class OrdersController{
-    public function getAllOrders(){
-        $orders = Order::getAll();
-        return $orders;
-    }
+
+
     public function addOrder(){
         if(isset($_SESSION["logged"])){
             foreach($_SESSION as $name => $product){

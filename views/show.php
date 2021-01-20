@@ -1,13 +1,9 @@
 
 <?php
-//require_once('C:\xampp\htdocs\tppr\views\index.php');
-require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
 
 
-require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-   //$data = new ProductsController();
-  //$products = (new ProductController)->getProduct();
-  //var_dump($products);
+require_once('includes\header.php');
+ 
   
 ?>
 <div class="container">
@@ -94,4 +90,4 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
         </div>
     </div>
 </div>
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>
+<?php require_once('includes\footer.php');?>

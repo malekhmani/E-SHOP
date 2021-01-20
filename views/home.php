@@ -1,7 +1,7 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
+require_once('includes\header.php');
 
-require_once('C:\xampp\htdocs\tppr\controllers\routeur.php');
+require_once('..\controllers\routeur.php');
 
     if(isset($_GET['result'])){
         $result=$_GET['result'];
@@ -68,7 +68,7 @@ require_once('C:\xampp\htdocs\tppr\controllers\routeur.php');
 													<div class="product-content">
 														<h3><a href="index.php?action=getProduct&&controller=ProductController&&ref_p=<?php echo $product->ref_p;?>"><?php echo $product->designation; ?></a></h3>
 														<div class="product-price">
-															<span><?php echo $product->prix;?>dh</span>
+															<span><?php echo $product->prix;?>DT</span>
 														</div>
 													</div>
 												</div>
@@ -143,6 +143,6 @@ require_once('C:\xampp\htdocs\tppr\controllers\routeur.php');
 	<!-- End Most Popular Area -->
 
 
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>
+<?php require_once('includes\footer.php');?>
 
 

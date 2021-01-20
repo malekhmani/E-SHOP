@@ -1,5 +1,5 @@
 
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\header.php'); 
+<?php require_once('includes\header.php'); 
 if(isset($_GET['result'])){
     $result=$_GET['result'];
     if($result=="produitexiste"){
@@ -97,4 +97,4 @@ if(isset($_GET['result'])){
 		</div>
 	</div>
   
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>
+<?php require_once('includes\footer.php');?>

@@ -1,6 +1,6 @@
 
 <?php
-require_once('C:\xampp\htdocs\tppr\database\DB.php');
+require_once('..\database\DB.php');
 
 class Admin{
   
@@ -8,6 +8,13 @@ class Admin{
 
         static public function getAll(){
             $stmt = DB::connect()->prepare('SELECT * FROM produit');
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'Admin'); 
+            $stmt->close();
+            $stmt =null;
+        }
+        static public function getAllor(){
+            $stmt = DB::connect()->prepare('SELECT * FROM orders');
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS, 'Admin'); 
             $stmt->close();
@@ -91,12 +98,13 @@ static public function addProduct($data){
             echo "erreur " .$ex->getMessage();
         }
     }
-    static public function getAllor(){
-        $stmt = DB::connect()->prepare('SELECT * FROM les_commandes');
+    /*static public function getAllor(){
+        $stmt = DB::connect()->prepare('SELECT * FROM orders');
         $stmt->execute();
         return $stmt->fetchAll();
         $stmt->close();
         $stmt =null;
-    }
+    }*/
+   
    
 }

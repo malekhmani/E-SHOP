@@ -1,5 +1,5 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
+require_once('includes\header.php');
 ?>
 <div class="container">
     <div class="row my-4">
@@ -85,4 +85,4 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
         </div>
     </div>
 </div>
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>
+<?php require_once('includes\footer.php');?>

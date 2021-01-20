@@ -1,5 +1,5 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\database\DB.php');
+require_once('..\database\DB.php');
 
 class Product{
     static public function getAll(){

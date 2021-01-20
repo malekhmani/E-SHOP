@@ -1,28 +1,31 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\models\Admin.php');
-require_once('C:\xampp\htdocs\tppr\models\category.php');
+require_once('..\models\Admin.php');
+require_once('..\models\category.php');
 
 class AdminController{
     public function da(){
         $products = Admin::getAll();
-        require ('C:\xampp\htdocs\tppr\views\admin\dashboard.php');  
+        require ('admin\dashboard.php');  
     }
     public function getProductt(){
         $categories = category::getAll();
         $product = Admin::getProductById($_GET['ref_p']);
         $productToUpdate= $product[0]; 
-     require ('C:\xampp\htdocs\tppr\views\admin\updatProduct.php');
+     require ('admin\updatProduct.php');
    
 }
     public function getAllProduct(){
         $products = Admin::getAll();
-        require ('C:\xampp\htdocs\tppr\views\admin\products.php');  
+        require ('admin\products.php');  
     }
+    public function getAllOrders(){
+        $orders = Admin::getAllor();   
+        require ('admin\or.php');
 
+    }
     public function getAllCategories(){
         $categories = category::getAll();
-        //return $categories;
-        require ('C:\xampp\htdocs\tppr\views\admin\addProduct.php');
+        require ('admin\addProduct.php');
     }
     
     public function updateProduct(){
@@ -102,10 +105,7 @@ class AdminController{
                 }
             }
         }
-    public function getAllOrders(){
-        $orders = Admin::getAllor();   
-        require ('C:\xampp\htdocs\tppr\views\admin\orders.php');
-    }
+  
     public function logout(){
         session_destroy();
         echo "<script type='text/javascript'>document.location.replace('index.php?result=deconnexion');</script>";

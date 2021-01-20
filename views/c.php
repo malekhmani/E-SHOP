@@ -1,5 +1,5 @@
-<?php require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-	require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
+<?php require_once('includes\header.php');
+	require_once('..\controllers\ProductController.php');
 
 	//$products = new ProductController();
 //$products = $products->getp();
@@ -62,4 +62,4 @@
          </div>
 </section>
 
-    <?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php'); 
+    <?php require_once('includes\footer.php'); 

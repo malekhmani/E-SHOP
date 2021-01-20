@@ -1,13 +1,4 @@
-<?php
-
-require_once('..\includes\header.php');
- /* if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
-    $data = new OrdersController();
-    $orders = $data->getAllOrders();
-  }else{
-    header('location: ./home.php');
-     // Redirect::to("home");
-  }*/
+<?php require_once('includes\header.php');
 ?>
 <div class="container">
   <div class="row my-5">

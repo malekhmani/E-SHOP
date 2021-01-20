@@ -20,11 +20,13 @@
     </div>
     </body>-->
 	<?php session_start();
-	require_once('C:\xampp\htdocs\tppr\controllers\CategoriesController.php');
+	
 
+		if(!isset($_SESSION["admin"])  ):
+		require_once('..\controllers\CategoriesController.php');
 	$categories = new CategoriesController();
 $categories = $categories->getAllCategorie();
-
+endif;	
 ?>
 	<!DOCTYPE html>
 <html lang="zxx">
@@ -128,12 +130,12 @@ $categories = $categories->getAllCategorie();
 										<div class="nav-inner">	
 											<ul class="nav main-menu menu navbar-nav">
                                             <?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true):?>
-            <li><a href="http://localhost:82/tppr/views/admin/dashboard.php?r=o">Admin</a></li>
+            <li><a href="admin/dashboard.php?r=o">Admin</a></li>
 			<?php if((isset($_GET["r"])) &&($_GET["r"]==='o') ):?>
             <li><a href="../index.php?action=logout&&controller=AdminController">Deconnexion</a></li>
 			<?php endif;?>
              <?php else:?>
-													<li class="active"><a href="http://localhost:82/tppr/views/">Home</a></li>
+													<li class="active"><a href="index.php">Home</a></li>
 													<li><a href="index.php?action=getp&&controller=ProductController">Products</a></li>												
 													
 													<li><a href="#">Categorie</a>
@@ -144,15 +146,15 @@ $categories = $categories->getAllCategorie();
 														</ul>
 													</li>
                                                     <?php if(!isset($_SESSION["logged"])):?>
-													<li><a href="http://localhost:82/tppr/views/login.php">Login</a></li>									
-													<li><a href="http://localhost:82/tppr/views/register.php">Register</a>
+													<li><a href="login.php">Login</a></li>									
+													<li><a href="register.php">Register</a>
                                                     <?php endif;?>
 													<?php if(isset($_SESSION["logged"]) && $_SESSION["logged"] === true):?>	
                                                         <li><a href="./index.php?action=logout&&controller=UsersController">Deconnexion</a></li>
                                                         <?php endif;?>
 													</li>
 													<li>
-								<a href="http://localhost:82/tppr/views/cart.php" class="single-icon">Cart<i class="ti-bag"></i> <span class="total-count"> <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0):?>
+								<a href="cart.php" class="single-icon">Cart<i class="ti-bag"></i> <span class="total-count"> <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0):?>
             <?php echo  '<span style="
                 background: #ff4c4f;
                 position:relative;

@@ -1,5 +1,5 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\database\DB.php');
+require_once('..\database\DB.php');
 class User{
 
     public $nom = null;
@@ -7,7 +7,18 @@ class User{
     public $email = null;
     public $mp = null;
     
-
+    static public function getclient($id){
+       
+         try{
+             $stmt = DB::connect()->prepare('SELECT * FROM client WHERE nom = ?');
+             $stmt->execute([$id]);
+             $user = $stmt->fetch(PDO::FETCH_OBJ);
+             return $user;
+             
+         }catch(PDOException $ex){
+             echo "erreur " .$ex->getMessage();
+         }
+     } 
     static public function login($data){
         $username = $data["nom"];
         try {
@@ -22,15 +33,17 @@ class User{
     }
 
     static public function createUser($data){
-        if($data['nom']&&$data['prenom']&&$data['email']&&$data['password']){
+        if($data['nom']&& $data['email']&& $data['password']&& $data['telephone']&& $data['adresse']){
         $stmt = DB::connect()->prepare('INSERT INTO client (nom
-        ,prenom,email,mp)
-        VALUES (:nom,:prenom,:email,:mp)');
+        ,email,mp,telephone,adresse)
+        VALUES (:nom,:email,:mp,:telephone,:adresse)');
        // $stmt->bindParam(':code',$data['code']);
         $stmt->bindParam(':nom',$data['nom']);
-        $stmt->bindParam(':prenom',$data['prenom']);
         $stmt->bindParam(':email',$data['email']);
         $stmt->bindParam(':mp',$data['password']);
+        $stmt->bindParam(':telephone',$data['telephone']);
+        $stmt->bindParam(':adresse',$data['adresse']);
+       
         if($stmt->execute()){
             return 'ok';
         }}else{
