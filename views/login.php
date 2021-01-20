@@ -11,7 +11,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
             include_once('includes/alerts/signupfailed.php');
 
         }elseif($result=="comptecree"){
-            include_once('includes/alerts/signupfailed.php');
+            include_once('includes/alerts/signupsucces.php');
 
         }
     }
@@ -52,3 +52,4 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
         </div>
     </div>
 </div>
+<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>

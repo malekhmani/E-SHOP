@@ -1,23 +1,12 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
-require_once('C:\xampp\htdocs\tppr\controllers\CategoriesController.php');
+
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
 if(isset($_GET['result'])){
     $result=$_GET['result'];
     if($result=="comptefailed"){
     include_once('./includes/alerts/comptefailed.php');
 }}
-/*if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
-    $categories = new CategoriesController();
-        $categories = $categories->getAllCategorie();
-        /*if(isset($_POST["submit"])){
-            $product = new ProductController();
-            $product =$product->newProduct();
-            
-        }
-    }else{
-       // header('location: ./home.php');
-    }*/
+
  
 ?>
 <div class="container">
@@ -58,15 +47,21 @@ if(isset($_GET['result'])){
                             placeholder="Ancien Prix" id="">
                         </div>
                         <div class="form-group">
+                        <div class="form-control" > <?php foreach($categories as $category) :?>
+                            <label><input type="checkbox" name="categorie" id="" value="<?php echo $category->code_cat;?>"><?php echo $category->nom;?>
+                              </label><?php endforeach?>
+                        </div>
+                        </div>
+                       <!-- <div class="form-group">
                            <select class="form-control" name="categorie" id="">
-                           <?php foreach($categories as $category) :?>
-                           <option value="<?php echo $category->code_cat;?>">
-                           <?php echo $category->nom;?>
+                           <?php //foreach($categories as $category) :?>
+                           <option value="<?php //echo $category->code_cat;?>">
+                           <?php// echo $category->nom;?>
                            </option>
-                           <?php endforeach?>
+                           <?php //endforeach?>
 
                            </select>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <textarea row="5" clos="20" autocomplete="off" class="form-control" name="Description"
                             placeholder="Description" id=""></textarea>
@@ -90,3 +85,4 @@ if(isset($_GET['result'])){
         </div>
     </div>
 </div>
+<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>

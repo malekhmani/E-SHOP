@@ -40,15 +40,22 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                             placeholder="Ancien Prix" id=""value="<?php echo $productToUpdate->remise;?>">
                         </div>
                         <div class="form-group">
+                        <div class="form-control" > <?php foreach($categories as $category) :?>
+                            <label><input type="checkbox" name="categorie" id="" value="<?php echo $category->code_cat;?>"><?php echo $category->nom;?>
+                              </label><?php endforeach?>
+                        </div>
+                        </div>
+                        <!--
+                        <div class="form-group">
                            <select class="form-control" name="categorie" id="">
-                           <?php foreach($categories as $category) :?>
-                           <option value="<?php echo $category->code_cat;?>">
-                           <?php echo $category->nom;?>
+                           <?php //foreach($categories as $category) :?>
+                           <option value="<?php //echo $category->code_cat;?>">
+                           <?php //echo $category->nom;?>
                            </option>
-                           <?php endforeach?>
+                           <?php //endforeach?>
 
                            </select>
-                        </div>
+                        </div>-->
                         <?php //echo substr($product->description,0,50)."....";?>
                         <div class="form-group">
                             <textarea row="5" clos="20" autocomplete="off" class="form-control" name="Description"
@@ -78,3 +85,4 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
         </div>
     </div>
 </div>
+<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>

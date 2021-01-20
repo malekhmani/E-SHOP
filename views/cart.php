@@ -8,13 +8,15 @@ if(isset($_GET['result'])){
 
 
 ?>
+<div class="shopping-cart section">
 <div class="container">
     <div class="row">
-        <div class="col-md-8 bg-white">
-            <table class="table table-stripped">
+    <div class="col-12">
+        <table class="table shopping-summery">
                 <thead>
-                    <tr>
-                        <th>Produit</th>
+                <tr class="main-hading">
+                       <th>Produit</th>
+                        <th>Name</th>
                         <th>Prix</th>
                         <th>Quantité</th>
                         <th>Total</th>
@@ -25,6 +27,7 @@ if(isset($_GET['result'])){
                     <?php foreach($_SESSION as $name => $product) :?>
                     <?php if(substr($name,0,9) == "products_"):?>
                     <tr>
+                        <td class="image" data-title="No"><img src="../images/<?php echo $product["photo"]?>" alt="#"></td>
                         <td><?php echo $product["title"];?></td>
                         <td><?php echo $product["price"];?></td>
                         <td><?php echo $product["qte"];?></td>
@@ -45,43 +48,53 @@ if(isset($_GET['result'])){
                     <?php endforeach;?>
                 </tbody>
             </table>
-               <!-- <?php// if(isset($_SESSION["count"]) && $_SESSION["count"] > 0 && isset($_SESSION["logged"])):?>
-                    <div id="paypal-button-container"></div>-->
-                <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0 && (!isset($_SESSION["logged"]))):?>
-                    <a href="http://localhost:82/tppr/views/login.php" class="btn btn-link">Connectez vous pour terminer vos achats</a>
-                <?php endif;?>
+              
         </div>
-        <div class="col-4 col-md-4 float-right bg-white">
-           <table class="table table-bordered">
-               <tbody>
-                   <tr>
-                       <th scope="row">Produits</th>
-                       <td>
-                        <?php echo isset($_SESSION["count"]) ? $_SESSION["count"] : 0;?>
-                       </td>
-                   </tr>
-                   <tr>
-                       <th scope="row">Total TTC</th>
-                       <td>
-                            <strong id="amount" data-amount="<?php echo $_SESSION["totaux"];?>">
+        </diV>
+        <div class="row">
+				<div class="col-12">
+					<!-- Total Amount -->
+					<div class="total-amount">
+						<div class="row">
+							<div class="col-lg-8 col-md-5 col-12">
+								<div class="left">
+									<div class="coupon">
+                                    <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0 && (!isset($_SESSION["logged"]))):?>
+                
+										<form action="#" target="_blank">
+											
+											<button class="btn">Connectez vous pour terminer vos achats</button>
+										</form>
+                                        <?php endif;?>
+									</div>
+								
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-7 col-12">
+								<div class="right">
+									<ul>
+										<li class="last">Produit <span><?php echo isset($_SESSION["count"]) ? $_SESSION["count"] : 0;?></span></li>
+                                        <li class="last">You Pay<span><strong id="amount" data-amount="<?php echo $_SESSION["totaux"];?>">
                                 <?php echo isset($_SESSION["totaux"]) ? $_SESSION["totaux"] : 0;?> <span class="bb-danger">dh</span>
-                            </strong>
-                       </td>
-                   </tr>
-               </tbody>
-           </table>
-            <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0):?>
-                <form method="post" action="index.php?action=cancelcart&&controller=ProductController">
-                    <button type="submit" class="btn btn-primary">
-                        Vider le panier
-                    </button>
-                </form>
-                <form method="post" id="addOrder" action="index.php?action=addOrder&&controller=OrdersController">
-                    <button type="submit" class="btn btn-primary">
-                    payer ici
-                    </button>
-                </form>
-            <?php endif;?>
-        </div>
-    </div>
-</div>
+                            </strong></li>
+
+									</ul>
+									<div class="button5">
+                                    <a href="index.php" class="btn">Continue shopping</a>
+                                    <?php if(isset($_SESSION["count"]) && $_SESSION["count"] > 0):?>
+										<a href="index.php?action=addOrder&&controller=OrdersController" class="btn">Checkout</a>
+										
+                                        <a href="index.php?action=cancelcart&&controller=ProductController" class="btn">Cancel Shopping</a>
+                                        <?php endif;?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/ End Total Amount -->
+				</div>
+			</div>
+		</div>
+	</div>
+  
+<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>

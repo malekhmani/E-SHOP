@@ -3,8 +3,8 @@
 require_once('C:\xampp\htdocs\tppr\database\DB.php');
 
 class Admin{
-
-
+  
+    
 
         static public function getAll(){
             $stmt = DB::connect()->prepare('SELECT * FROM produit');

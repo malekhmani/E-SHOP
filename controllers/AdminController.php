@@ -3,7 +3,10 @@ require_once('C:\xampp\htdocs\tppr\models\Admin.php');
 require_once('C:\xampp\htdocs\tppr\models\category.php');
 
 class AdminController{
-  
+    public function da(){
+        $products = Admin::getAll();
+        require ('C:\xampp\htdocs\tppr\views\admin\dashboard.php');  
+    }
     public function getProductt(){
         $categories = category::getAll();
         $product = Admin::getProductById($_GET['ref_p']);
@@ -38,8 +41,9 @@ class AdminController{
             );
             $result = Admin::editProduct($data);
             if($result === "ok"){
-               
-                header('location: ./index.php?action=getAllProduct&&controller=AdminController&&reult=ups');
+                echo "<script type='text/javascript'>document.location.replace('index.php?action=getAllProduct&&controller=AdminController&&result=ups');</script>";
+
+               // header('location: ./index.php?action=getAllProduct&&controller=AdminController&&reult=ups');
             }else{
                 echo $result;
                 //header('location: ./index.php?action=getAllProduct&&controller=AdminController&&reult=upf');
@@ -63,8 +67,9 @@ class AdminController{
     public function removeProduct(){
             $result = Admin::deleteProduct($_GET['id']);
             if($result === "ok"){
-               
-                header('location: ./index.php?action=getAllProduct&&controller=AdminController&&reuslt=pd');
+                echo "<script type='text/javascript'>document.location.replace('index.php?action=getAllProduct&&controller=AdminController&&result=pd');</script>";
+
+               // header('location: ./index.php?action=getAllProduct&&controller=AdminController&&reuslt=pd');
             }else{
                 echo $result;
             }
@@ -86,11 +91,14 @@ class AdminController{
                 
                 $result = Admin::addProduct($data);
                 if($result === "ok"){
-                    header('location: ./index.php?action=getAllProduct&&controller=AdminController&&result=pa');}
+                    echo "<script type='text/javascript'>document.location.replace('index.php?action=getAllProduct&&controller=AdminController&&result=pa');</script>";}
+
+                    //header('location: ./index.php?action=getAllProduct&&controller=AdminController&&result=pa');}
                 else{
                     
-                  
-                    header('location: ./index.php?action=getAllCategories&&controller=AdminController&&result=comptefailed');
+                    echo "<script type='text/javascript'>document.location.replace('index.php?action=getAllCategories&&controller=AdminController&&result=comptefailed');</script>";
+
+                    //header('location: ./index.php?action=getAllCategories&&controller=AdminController&&result=comptefailed');
                 }
             }
         }
@@ -98,7 +106,12 @@ class AdminController{
         $orders = Admin::getAllor();   
         require ('C:\xampp\htdocs\tppr\views\admin\orders.php');
     }
+    public function logout(){
+        session_destroy();
+        echo "<script type='text/javascript'>document.location.replace('index.php?result=deconnexion');</script>";
 
+       //header('location: ./index.php?result=deconnexion');
+    }
     
 
     

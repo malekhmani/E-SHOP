@@ -52,3 +52,4 @@
         </div>
     </div>
 </div>
+<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>

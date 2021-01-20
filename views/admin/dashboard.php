@@ -1,6 +1,10 @@
 <?php
-require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
+require_once('../../views/includes/header.php');
+require_once('head.php');
+
+
 ?>
+
 <div class="container">
     <div class="row my-5">
         <div class="col-md-4">
@@ -8,7 +12,7 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                 <div class="card-body">
                     <h3 class="card-text text-center">
                         <a href="../index.php?action=getAllProduct&&controller=AdminController"
-                        style="text-decoration:none;color:white;font-weight:bold">Produits</a>
+                        >Produits</a>
                     </h3>
                 </div>
             </div>
@@ -18,10 +22,11 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
                 <div class="card-body">
                     <h3 class="card-text text-center">
                         <a href="../index.php?action=getAllOrders&&controller=AdminController"
-                        style="text-decoration:none;color:white;font-weight:bold">Commandes</a>
+                       >Commandes</a>
                     </h3>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php require_once('../../views/includes/footer.php');?>

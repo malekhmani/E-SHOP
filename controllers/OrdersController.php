@@ -27,12 +27,14 @@ class OrdersController{
                 }
             }
            
-            
-            header('location: ./index.php?result=cmdsucces'); 
+            echo "<script type='text/javascript'>document.location.replace('index.php?result=cmdsucces');</script>";
+
+            //header('location: ./index.php?result=cmdsucces'); 
         }
                 }}}else{
-                   
-                    header('location: ./login.php?result=cmdfailed');
+                    echo "<script type='text/javascript'>document.location.replace('login.php?result=cmdfailed');</script>";
+ 
+                    //header('location: ./login.php?result=cmdfailed');
                     
                 
             

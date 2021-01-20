@@ -5,10 +5,36 @@ require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
 
 class ProductController{
     public function getAllProducts(){
-        $products = Product::getAll();
+        //$products = Product::getAll();
+        $products = Product::g();
         $categories = category::getAll();
+        $solde = Product::getSold();
         
         require ('C:\xampp\htdocs\tppr\views\home.php');
+    }
+    public function getp(){
+        //$products = Product::getpluscomande();
+
+        $products = Product::getAll();
+        $categories = category::getAll();
+        //return $products;
+        
+        require ('C:\xampp\htdocs\tppr\views\c.php');
+    }
+
+    public function getpls(){
+        $products = Product::getpluscomande();
+        $categories = category::getAll();
+        //return $products;
+        
+        require ('C:\xampp\htdocs\tppr\views\c.php');
+    }
+    public function getpc(){
+       
+        $products = Product::getProductByCat($_GET['id']);
+        $categories = category::getAll();
+        require ('C:\xampp\htdocs\tppr\views\c.php');
+
     }
     public function getAllProduct(){
         $products = Product::getAll();
@@ -19,7 +45,7 @@ class ProductController{
        
             $products = Product::getProductByCat($_GET['id']);
             $categories = category::getAll();
-       
+            $solde = Product::getSold();
            require ('C:\xampp\htdocs\tppr\views\home.php');
         
     }
@@ -30,15 +56,20 @@ class ProductController{
             $id2 = $_GET["product_qte"];
             $id3 = $_GET["qte_stock"];
             $id4 = $_GET["prix"];
+            $id5 = $_GET["photo"];
             if($_SESSION["products_".$id]["title"] == $id1){
                 //$R="Vous avez déja ajouté ce produit au panier";
                 //Session::set("success",$R);
-                header('location: ./cart.php?result=produitexiste');}
+                echo "<script type='text/javascript'>document.location.replace('cart.php?result=produitexiste');</script>";}
+
+               // header('location: ./cart.php?result=produitexiste');}
             else{
                 if($id3< $_GET["product_qte"]){
                   // $R="La quantité disponible est : $id3";
                   // Session::set("success",$R);
-                   header('location: ./index.php?result=qte');}
+                   //header('location: ./index.php?result=qte');}
+                   echo "<script type='text/javascript'>document.location.replace('index.php?result=qte');</script>";}
+
                     
                     else{
                         $_SESSION["products_".$id] = array(
@@ -47,17 +78,22 @@ class ProductController{
                             "price" => $id4,
                             "qte" => $id2,
                             "total" => $id4 * $id2,
+                            "photo"=>$id5,
             
                             
                         );
                         $_SESSION["totaux"] += $_SESSION["products_".$id]["total"];
                         $_SESSION["count"] += 1;
                        
-                       header('location: ./cart.php');   
+                       //header('location: ./cart.php');   
+                       echo "<script type='text/javascript'>document.location.replace('cart.php');</script>";
+
                     }
                 }
             }else{
-                header('location: ./cart.php');   
+                echo "<script type='text/javascript'>document.location.replace('cart.php');</script>";
+
+                //header('location: ./cart.php');   
                
             }
      
@@ -76,7 +112,9 @@ class ProductController{
         unset($_SESSION[$name]);
         unset($_SESSION["count"]);
         unset($_SESSION["totaux"]);
-        header('location: ./cart.php'); 
+        echo "<script type='text/javascript'>document.location.replace('cart.php');</script>";
+
+        //header('location: ./cart.php'); 
     }}}
   
            
@@ -84,7 +122,9 @@ class ProductController{
         unset($_SESSION["products_".$id]);
         $_SESSION["count"] -= 1;
         $_SESSION["totaux"] -= $price;
-        header('location: ./cart.php');   
+        echo "<script type='text/javascript'>document.location.replace('cart.php');</script>";
+
+       // header('location: ./cart.php');   
     }
     /*public function newProduct(){
         if(isset($_POST["submit"])){

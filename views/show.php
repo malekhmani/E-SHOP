@@ -5,7 +5,6 @@ require_once('C:\xampp\htdocs\tppr\controllers\ProductController.php');
 
 
 require_once('C:\xampp\htdocs\tppr\views\includes\header.php');
-require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');
    //$data = new ProductsController();
   //$products = (new ProductController)->getProduct();
   //var_dump($products);
@@ -35,20 +34,39 @@ require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');
                                 ?>
                             </p>
                         </div>
+                        <?php
+                                   if( $products->remise!=0):
+                                ?>
                         <div class="card-footer">
                             <span class="badge badge-danger p-2">
                                 <?php
-                                    echo $products->prix;
+                                    echo $products->remise;
                                 ?>DT
                             </span>
                              <span class="badge badge-dark p-2">
                                 <strike>
                                     <?php
-                                        echo $products->remise;
-                                    ?>dh
+                                        echo $products->prix;
+                                    ?>DT
                                 </strike>
                             </span>
                         </div>
+                        <?php
+                                   else:
+                                ?>
+                              <div class="card-footer"> 
+                            <span class="badge badge-danger p-2">
+                                <?php
+                                    echo $products->prix;
+                                ?>DT
+                            </span>
+                            </div>
+                            
+                            
+                                <?php
+                                   endif;
+                                ?>
+                            
                     </div>
                 </div>
             </div>
@@ -64,6 +82,8 @@ require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');
                     <input type="hidden" name="ref_p" value="<?php echo $products->ref_p;?>">
                     <input type="hidden" name="qte_stock" value="<?php echo $products->qte_stock;?>">
                     <input type="hidden" name="prix" value="<?php echo $products->prix;?>">
+                    <input type="hidden" name="photo" value="<?php echo $products->photo;?>">
+
                 </div>
                 <div class="form-group">
                     <input type='hidden' name='action' value='checkout' >
@@ -74,3 +94,4 @@ require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');
         </div>
     </div>
 </div>
+<?php require_once('C:\xampp\htdocs\tppr\views\includes\footer.php');?>
