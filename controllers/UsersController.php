@@ -16,7 +16,7 @@ class UsersController{
 
                // if($_SESSION["nom"]=='admin'&& $_SESSION["prenom"]=='admin'){
              if($_SESSION["admin"] == '1' && $_SESSION["nom"]=='admin' && $_SESSION["logged"] = true){
-                echo "<script type='text/javascript'>document.location.replace('admin/dashboard.php?r=o');</script>";
+                echo "<script type='text/javascript'>document.location.replace('dash.php?r=o');</script>";
             }
                else{
                 //header('location: ./index.php?result=con');
@@ -80,4 +80,36 @@ class UsersController{
 
        //header('location: ./index.php?result=deconnexion');
     }
+public function contactus(){
+        if(isset($_POST['btn-send']))
+    {
+       $UserName = $_POST['name'];
+       $Subject = $_POST['subject'];
+       
+       $Phone = $_POST['phone'];
+       $Msg = $_POST['message'];
+             // $headers .= 'From: Your name <dridiikram000@gmail.com>' . "\r\n";
+
+       $headers =  'MIME-Version: 1.0' . "\r\n"; 
+       $headers .= 'From: Your name <'.$Email = $_POST["email"]; '>' . "\r\n";
+       $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
+       if(empty($UserName) || empty($Email) || empty($Subject) || empty($Phone) || empty($Msg))
+       {
+        echo "<script type='text/javascript'>document.location.replace('contact.php?result=comptefailed');</script>";
+    }
+       else
+       {
+           $to = "dridiikram000@gmail.com";
+           //$header=$Email;
+           if(mail($to,$Subject,$Msg,$headers))
+           {
+            echo "<script type='text/javascript'>document.location.replace('contact.php?result=msgenvoyer');</script>";
+        }
+       }
+    }
+    else
+    {
+        echo "<script type='text/javascript'>document.location.replace('contact.php');</script>";
+    }
+}
 }

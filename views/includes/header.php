@@ -21,8 +21,7 @@
     </body>-->
 	<?php session_start();
 	
-
-		if(!isset($_SESSION["admin"])  ):
+if(!isset($_SESSION["admin"]) OR (isset($_SESSION["logged"]) AND($_SESSION["nom"]!='admin')) ):  
 		require_once('..\controllers\CategoriesController.php');
 	$categories = new CategoriesController();
 $categories = $categories->getAllCategorie();
@@ -40,11 +39,9 @@ endif;
 	<!-- Title Tag  -->
     <title>Eshop</title>
 	<!-- Favicon -->
-	<?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true):?>
-		<link rel="icon" type="image/png" href="../../images/favicon.png">
-						<?php else :?>
+	
 	<link rel="icon" type="image/png" href="../images/favicon.png">
-	<?php endif?>
+	
 	<!-- Web Font -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 	
@@ -102,11 +99,9 @@ endif;
 					<div class="col-lg-2 col-md-2 col-12">
 						<!-- Logo -->
 						<div class="logo">
-						<?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true &&(isset($_GET["r"])) &&($_GET["r"]==='o') ):?>
-							<a href="index.html"><img src="../../images/logo.png" alt="logo"></a>
-						<?php else :?>	
+						
 							<a href="index.html"><img src="../images/logo.png" alt="logo"></a>
-						<?php endif ?>
+						
 							
 
 						</div>
@@ -130,9 +125,9 @@ endif;
 										<div class="nav-inner">	
 											<ul class="nav main-menu menu navbar-nav">
                                             <?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true):?>
-            <li><a href="admin/dashboard.php?r=o">Admin</a></li>
+            <li><a href="dash.php?r=o">Admin</a></li>
 			<?php if((isset($_GET["r"])) &&($_GET["r"]==='o') ):?>
-            <li><a href="../index.php?action=logout&&controller=AdminController">Deconnexion</a></li>
+            <li><a href="index.php?action=logout&&controller=AdminController">Deconnexion</a></li>
 			<?php endif;?>
              <?php else:?>
 													<li class="active"><a href="index.php">Home</a></li>
@@ -162,6 +157,9 @@ endif;
                 left:0px;" class="badge badge-notify">';
                 echo $_SESSION["count"];?>
           <?php endif;?></span></a></li>
+                     <li><a href="contact.php">Contact</a></li>												
+
+
           <?php endif;?>
         
           

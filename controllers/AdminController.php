@@ -5,27 +5,27 @@ require_once('..\models\category.php');
 class AdminController{
     public function da(){
         $products = Admin::getAll();
-        require ('admin\dashboard.php');  
+        require ('dash.php');  
     }
     public function getProductt(){
         $categories = category::getAll();
         $product = Admin::getProductById($_GET['ref_p']);
         $productToUpdate= $product[0]; 
-     require ('admin\updatProduct.php');
+     require ('updatProduct.php');
    
 }
     public function getAllProduct(){
         $products = Admin::getAll();
-        require ('admin\products.php');  
+        require ('products.php');  
     }
     public function getAllOrders(){
         $orders = Admin::getAllor();   
-        require ('admin\or.php');
+        require ('or.php');
 
     }
     public function getAllCategories(){
         $categories = category::getAll();
-        require ('admin\addProduct.php');
+        require ('addProduct.php');
     }
     
     public function updateProduct(){
